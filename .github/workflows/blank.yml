@@ -1,4 +1,4 @@
-name: Docker Image CI 
+name: Docker Image CI
 on: 
   push: 
     branches: [ master ] 
@@ -8,7 +8,7 @@ on:
 jobs: 
   build: 
     runs-on: ubuntu-latest 
-    
+
     steps: 
       - uses: actions/checkout@v4
 
@@ -19,8 +19,8 @@ jobs:
         run: | 
           docker login -u $DOCKER_USER -p $DOCKER_PASS 
 
-      - name: Build the Docker image 
-        run: docker build . --file Dockerfile --tag sdominguer/express-randomquotes:latest 
+      - name: Build the Docker image
+        run: docker build ./randomquotes-flask --file randomquotes-flask/Dockerfile --tag sdominguer/express-randomquotes:latest 
 
-      - name: Docker Push 
+      - name: Docker Push
         run: docker push sdominguer/express-randomquotes:latest
